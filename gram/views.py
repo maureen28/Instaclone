@@ -17,6 +17,13 @@ def messages(request):
     images = Image.objects.all()
     return render(request, 'main/messages.html',{ 'images': images})
 
+@login_required(login_url='/accounts/login/')
+def get_comments(request,comments):
+    images = Image.objects.filter(comments__comment = comments)
+    all_comments = Comment.objects.all()
+    form = CommentForm()
+    message = f"{comments}"
+    return render(request, 'comments.html', {"message":message, "images":images, 'all_categories': all_comments, 'form' : form})
 
 # Search function
 @login_required(login_url='/accounts/login/')

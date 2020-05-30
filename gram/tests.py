@@ -10,12 +10,14 @@ class InstagramTestClass(TestCase):
         # Set up data for the whole TestCase
         cls.user = User(id=1,username='Nimo',email='nimo@gmail.com',password='nimo5!34')
         cls.profile1 = Profile(bio='Live life',profile_pic='prof_pics/image.jpg')
-        cls.image1 = Image(id=1,caption='Jedi',name='Armies', my_image='gallery/flower.jpg',profile=cls.profile1)
+        cls.comment1 =Comment(comments ='Looking good', user =cls.user)
+        cls.image1 = Image(id=1,caption='Jedi',name='Armies',title=cls.comment1, my_image='gallery/flower.jpg',profile=cls.profile1)
 
     # Testing  instance
     def test_instance(cls):
         cls.assertTrue(isinstance(cls.user, User))
         cls.assertTrue(isinstance(cls.profile1, Profile))
+        cls.assertTrue(isinstance(cls.comment1, Comment))
         cls.assertTrue(isinstance(cls.image1, Image))
 
     # Teardown

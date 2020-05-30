@@ -14,7 +14,7 @@ def welcome(request):
 
 # Message
 def messages(request):
-    return render(request, 'main/messages.html',{ 'images': images})
+    return render(request, 'main/messages.html')
 
 @login_required(login_url='/accounts/login/')
 def get_comments(request,comments):

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse, Http404
-from .models import Profile, Image, Comment, Like
+from .models import Profile, Image, Comment
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, CommentForm, ProfileForm
 

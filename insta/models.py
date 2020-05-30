@@ -47,3 +47,21 @@ class Comment(models.Model):
     def get_comment(cls):
         comment = Comment.objects.all()
         return comment
+
+
+# Image
+class Image(models.Model):
+    author = models.ForeignKey(User, blank=True, null=True, related_name="nimo")
+    time_created = models.DateTimeField(auto_now=True, auto_now_add=False)
+    title = models.CharField(max_length = 100, unique=True)
+    likes = models.IntegerField(default=0, null=True)
+    caption = models.CharField(max_length=160)
+    my_image = models.ImageField(upload_to='gallery/')
+    profile = models.ForeignKey(Profile, null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('home')
+

@@ -17,16 +17,9 @@ class UserRegisterForm(UserCreationForm):
 class ImageForm(forms.ModelForm):
     class Meta:
         model = Image
-        fields = ['caption',
+        fields = ['caption', 'title',
                    'my_image']
 
-
-# Commentform
-class CommentForm(forms.ModelForm):
-
-    class Meta:
-        model = Comment
-        fields = ['comments']
 
 # profile
 class ProfileForm(forms.ModelForm):

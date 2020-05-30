@@ -25,6 +25,7 @@ class InstagramTestClass(TestCase):
         Profile.objects.all().delete()
         User.objects.all().delete()
         Image.objects.all().delete()
+        Comment.objects.all().delete()
 
     # Testing Save Method
     def save_method_test(self):

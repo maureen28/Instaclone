@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http  import HttpResponse, Http404
 from .models import Profile, Image, Comment
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, ImageForm, CommentForm, ProfileForm
+from .forms import UserRegisterForm, ImageForm, ProfileForm
 
 # Create your views here.
 
@@ -20,9 +20,8 @@ def messages(request):
 def get_comments(request,comments):
     images = Image.objects.filter(comments__comment = comments)
     all_comments = Comment.objects.all()
-    form = CommentForm()
     message = f"{comments}"
-    return render(request, 'comments.html', {"message":message, "images":images, 'all_categories': all_comments, 'form' : form})
+    return render(request, 'comments.html', {"message":message, "images":images, 'all_categories': all_comments})
 
 # Search function
 @login_required(login_url='/accounts/login/')

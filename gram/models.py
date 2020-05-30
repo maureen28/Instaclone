@@ -56,7 +56,6 @@ class Image(models.Model):
     time_created= models.DateTimeField(default=datetime.now, blank=True)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     likes = models.PositiveIntegerField(default=0)
-    title = models.ManyToManyField(Comment)
     message = models.TextField(default='Hey there.')
     my_image = models.ImageField(upload_to='gallery/',default ='gallery/image.jpg')
 

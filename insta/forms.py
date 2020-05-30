@@ -13,8 +13,12 @@ class UserRegisterForm(UserCreationForm):
                   'email',
                   'password1',
                    'password2']
-# Upload/ post
 
+# Upload/ post
+class PostPictureForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        fields = ['caption', 'my_image']
 
 # Commentform
 class CommentForm(forms.ModelForm):

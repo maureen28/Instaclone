@@ -3,10 +3,11 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from datetime import datetime
 
 # Create your models here.
 class Profile(models.Model):
-    profile_pic = models.ImageField(upload_to='profile/',null=True)
+    profile_pic = models.ImageField(upload_to='profile/',null=True, default ='profile/image.jpg')
     bio = models.CharField(max_length=60,blank=True)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
 
@@ -29,12 +30,12 @@ class Profile(models.Model):
         self.delete()
 
 class Image(models.Model):
-    name = models.CharField(max_length = 150)
+    name = models.CharField(max_length = 150, default='Armies')
     caption = models.CharField(max_length = 60)
-    time_created= models.DateTimeField(default=timezone.now)
+    time_created= models.DateTimeField(default=datetime.now, blank=True)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     likes = models.PositiveIntegerField(default=0)
-    my_image = models.ImageField(upload_to='gallery/')
+    my_image = models.ImageField(upload_to='gallery/',default ='gallery/image.jpg')
 
     def __str__(self):
         return self.caption

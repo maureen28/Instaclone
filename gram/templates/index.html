@@ -4,7 +4,7 @@
 {{ block.super}}
 {% block content  %}
 
-{% for post in posts %}
+{% for post in images %}
 <div class="container">
   <div class="card carding" style="width: 50rem;">
     <h5 class="card-header"> {{post.profile.user.username}} {{post.user}}</h5>
@@ -14,7 +14,7 @@
     <div class="icons">
       <div><i class="far fa-heart fa-2x"></i></div>
     </div>
-    <p class="card-text">{{post.upload_date}}</p>
+    <p class="card-text">{{post.time_created}}</p>
     <p class="card-text text-muted">{{post.likes}}</p>
   </div>
 </div>

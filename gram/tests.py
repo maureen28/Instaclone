@@ -10,7 +10,7 @@ class InstagramTestClass(TestCase):
         # Set up data for the whole TestCase
         cls.user = User(id=1,username='Nimo',email='nimo@gmail.com',password='nimo5!34')
         cls.profile1 = Profile(bio='Live life',profile_pic='prof_pics/image.jpg')
-        cls.image1 = Image(id=1,caption='Jedi',name'Armies', my_image='gallery/flower.jpg', profile=cls.profile1)
+        cls.image1 = Image(id=1,caption='Jedi',name='Armies', my_image='gallery/flower.jpg',profile=cls.profile1)
 
     # Testing  instance
     def test_instance(cls):
@@ -33,7 +33,7 @@ class InstagramTestClass(TestCase):
     # Testing Delete Method
     def delete_method_test(self):
         self.image1.save_image()
-        filtered_img = Image.objects.filter(name'Armies')
+        filtered_img = Image.objects.filter(name='Armies')
         Image.delete_image(filtered_img)
         final_images = Image.objects.all()
         self.assertTrue(len(final_images) == 0)
@@ -42,8 +42,8 @@ class InstagramTestClass(TestCase):
     def update_method_test(self):
         self.image1.save_image()
         filtered_img = Image.update_image('Armies','Abnomaree')
-        fetched = Image.objects.get(name'Abnomaree')
-        self.assertEqual(fetched.title,'Abnomaree')
+        fetched = Image.objects.get(name ='Abnomaree')
+        self.assertEqual(fetched.name,'Abnomaree')
 
     # Testing get image Method
     def get_image_by_id_test_method(self):

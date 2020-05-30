@@ -33,10 +33,9 @@
         <a class="navbar-brand" href="{% url 'welcome' %}"><i class="fa fa-home"></i></a>
         <a class="navbar-brand" href="{% url 'messages' %}"><i class="fa fa-paper-plane"></i></a>
         <a class="navbar-brand" href="{% url 'welcome' %}"><i class="fa fa-compass"></i></a>
-        <a class="navbar-brand" href="{% url 'comments' %}"><i class="fa fa-heart"></i></a>
-    </ul>
-</nav>
+        <a class="navbar-brand" href="{% url 'get_comments' %}"><i class="fa fa-heart"></i></a>
  <div class="">
+ <div class="col-sm-6 col-md-6">
             {% if user.is_authenticated %}
             <ul>
               <li class="dropdown">
@@ -45,7 +44,7 @@
                       </a>
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <a href="">Home</a>
+                    <a href="{% url 'welcome' %}">Home</a>
                   </li>
                   <li>
                     <a href="/accounts/password/change">Change Password</a>
@@ -58,7 +57,7 @@
             </ul>
             {% else %}
             <li>
-              <a class='btn btn-default' href="/accounts/login">Login</a>
+              <a class='btn btn-info' href="/accounts/login">Login</a>
             </li>
 
             {% endif %}
@@ -68,5 +67,7 @@
           </div>
         </div>
 </div>
+    </ul>
+</nav>
 </body>
 </html>

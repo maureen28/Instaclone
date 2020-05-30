@@ -1,37 +1,24 @@
 {%extends 'base.html'%}
 {% block content %}
 
-
-<div class="">
-{% comment %} Jumbotron {% endcomment %}
-  <div class="">
-    {% if images %}
-
-    <div class="jumbotron bg-dark">
-      <div class="">
-        <h2 class="display-5 text-center font-weight-bold text-white">Found {{ images|length }} messages from {{message}}
+<div class="container">
+<div class="col-md-5">
+    <div class="jumbotron">
+        <h2 class="display-5 text-center font-weight-bold text-white">Direct
         </h2>
-      </div>
+            <p >{{ image_item.author }}</p>
+            <p >{{ image_item.title }}</p>
+            <p><b>Time created:</b> {{ image_item.time_created }}</p>
+
     </div>
-    {% else %}
-      <div class="container">
+    </div>
+     <div class="col-md-7">
       <h1><i class="fa fa-paper-plane"></i></h1>
         <h2>Your messages</h2>
         <p>Send private photos and messages to a friend or group.</p>
         <button class='btn btn-info' type="submit">Send message</button>
       </div>
-    {% endif %}
-
   </div>
-{% comment %} Content {% endcomment %}
-
-    <div class="container">
-        {% for image_item in images %}
-            <p >{{ image_item.author }}</p>
-            <p >{{ image_item.title }}</p>
-            <p><b>Time created:</b> {{ image_item.time_created }}</p>
-        {% endfor %}
-</div>
 <hr>
 
 {% endblock %}

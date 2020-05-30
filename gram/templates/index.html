@@ -1,23 +1,25 @@
 {%extends 'base.html'%}
-{%load bootstrap4 %}
+{%load bootstrap3 %}
 {% load static %}
 {{ block.super}}
 {% block content  %}
 
-{% for post in images %}
 <div class="container">
-  <div class="card carding" style="width: 50rem;">
-    <h5 class="card-header"> {{post.profile.user.username}} {{post.user}}</h5>
-
-  <img class="img-fluid" src="{{ post.image.url }}" alt="">
-  <div class="card-body">
-    <div class="icons">
-      <div><i class="far fa-heart fa-2x"></i></div>
+    <div class="row">
+    {% for post in images %}
+        <div class=" col-md-4"><br>
+            <div id ='main'>
+                 <h4 class="card-header"> {{post.profile.user.username}} {{post.user}}</h4>
+                  <img class="img-fluid" src="{{ post.my_image.url }}" alt="image">
+             <div class="overlay">
+            <div class="text">
+              <p class="card-text">Posted at :{{post.time_created}}</p>
+               <p class="card-text text-muted"><i class="fa fa-heart"></i>{{post.likes}}</p>
+             </div>
+             </div>
+            </div>
+        </div>
+    {% endfor %}
     </div>
-    <p class="card-text">{{post.time_created}}</p>
-    <p class="card-text text-muted">{{post.likes}}</p>
-  </div>
 </div>
-</div>
-   {% endfor %}
 {% endblock %}

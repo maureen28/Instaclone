@@ -11,8 +11,8 @@ urlpatterns = [
     url(r'messages/', messages, name='messages'),
     url(r'comments/', get_comments, name='get_comments'),
     url(r'search/', search_results, name='search_results'),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
-    url(r'^logout/$',views.logout, {"next_page": '/'}),
+    # url(r'^accounts/', include('registration.backends.simple.urls')),
+    # url(r'^logout/$',views.logout, {"next_page": '/'}),
 ]
 
 if settings.DEBUG:

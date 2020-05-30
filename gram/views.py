@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, ImageForm, CommentForm, ProfileForm
 
 # Create your views here.
-@login_required(login_url='/accounts/login/')
+
 def welcome(request):
     images = Image.objects.all()
     all_comments = Comment.objects.all()
@@ -14,7 +14,6 @@ def welcome(request):
 
 # Message
 def messages(request):
-    images = Image.objects.all()
     return render(request, 'main/messages.html',{ 'images': images})
 
 @login_required(login_url='/accounts/login/')

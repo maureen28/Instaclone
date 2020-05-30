@@ -25,3 +25,25 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()
 
+class Comment(models.Model):
+    comments = models.CharField(max_length=60,null=True)
+    comment_date = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.comments
+    class Meta:
+        ordering = ['-comment_date']
+
+    # save comment
+    def save_comment(self):
+        return self.save()
+
+    # delete comment
+    def delete_comment(self):
+        self.delete()
+
+    @classmethod
+    def get_comment(cls):
+        comment = Comment.objects.all()
+        return comment

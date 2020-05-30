@@ -1,14 +1,19 @@
-from django.conf.urls import url
-from . import views
+from django.conf.urls import url,include
+from django.contrib import admin
+from django.conf import settings
 from django.conf.urls.static import static
-# from django.conf import settings
+from django.contrib.auth import views
+from ig.views import welcome, search_results, get_comments, messages
 
-urlpatterns=[
-    url(r'^welcome/$',views.welcome,name='index'),
-    url(r'^$', views.home, name = 'welcome'),
-    url(r'^new/post/$', views.post, name = 'post'),
-    url(r'^image_form/$', views.image_form, name='image_form'),
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url('', welcome, name = 'welcome'),
+    url(r'messages/', messages, name='messages'),
+    url(r'comments/', get_comments, name='get_comments'),
+    url(r'search/', search_results, name='search_results'),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^logout/$',views.logout, {"next_page": '/'}),
 ]
 
-# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

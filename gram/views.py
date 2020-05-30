@@ -5,17 +5,17 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, ImageForm, CommentForm, ProfileForm
 
 # Create your views here.
-
-
 @login_required(login_url='/accounts/login/')
-def home(request):
-    posts = Image.get_all()
-    return render(request, 'index.html', { 'posts': posts })
+def welcome(request):
+    images = Image.objects.all()
+    all_comments = Comment.objects.all()
+    all_profiles = Profile.objects.all()
+    return render(request, 'index.html',{'images': images, 'all_comments': all_comments, 'all_profiles' : all_profiles})
 
-def post(request):
-    posts = Image.get_all()
-    
-    return render(request, 'index.html', { 'posts': posts})
+# Message
+def messages(request):
+    images = Image.objects.all()
+    return render(request, 'main/messages.html',{ 'images': images})
 
 
 # Search function

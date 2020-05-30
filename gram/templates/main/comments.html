@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+
+<div class="container">
+{% if images %}
+    {% for post in images %}
+        <div>
+            <img style="vertical-align:middle" src="{{ post.my_image.url }}">
+            <span style="">{{post.profile.user.username}} {{post.user}} started following you.
+            <button class='btn btn-info' type="submit">Follow</button><span>
+            <span style="">{{post.profile.user.username}} {{post.user}}<br> liked your post.<span>
+            <p>{{post.profile.user.username}} {{post.user}} commented :{{post.message}}</p>
+        </div>
+
+    {% endfor %}
+    {% else %}
+    <!-- Material input -->
+    <div class="md-form">
+    <input type="text" id="form1" class="form-control">
+    <label for="form1">Example label</label>
+    </div>
+    {% endif %}
+
+  </div>
+
+{% endblock content %}

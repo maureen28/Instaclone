@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+
     <div class="content-section container card">
     <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -10,4 +11,5 @@
 </br>
     <p><a href="{% url 'welcome'%}">Return to home</a></p>
     </div>
+
 {% endblock content %}

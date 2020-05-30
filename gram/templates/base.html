@@ -1,33 +1,50 @@
 {% load bootstrap3 %}
-{% load static%}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
 
   {% if title %}
-  <title>instagram- {{title}}</title>
+  <title>Instagram - {{title}}</title>
   {% else %}
-    <title> instagram </title>
+    <title> Instagram </title>
   {% endif %}
 
   {% block styles %}
     {% bootstrap_css %}
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-  {% endblock %}
-
+   <style>
+        body {
+            margin-left: 10px;
+        }
+        .jumbotron{
+            background-image: url('https://picsum.photos/1900/1267?grayscale');
+            color: black;
+        }
+        .footer{
+            background-color: black;
+            color: white;
+        }
+    </style>
+{% endblock %}
 </head>
 <body>
-<div class="container">
     {% include "navbar.html" %}
 
     {% block content %}
+
     {%endblock%}
 
     {% block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     {% bootstrap_javascript %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   {% bootstrap_javascript %}
     {% endblock %}
-</div>
+    <hr>
+<footer><br>
+ <!-- Copyright -->
+  <div class="footer text-center py-3"><br>© 2020 Copyright:Nimo<br><br>
+  </div>
+  <!-- Copyright -->
+</footer>
 </body>
 </html>

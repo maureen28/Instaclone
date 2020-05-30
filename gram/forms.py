@@ -17,9 +17,16 @@ class UserRegisterForm(UserCreationForm):
 class ImageForm(forms.ModelForm):
     class Meta:
         model = Image
-        fields = ['caption', 'title',
+        fields = ['caption',
                    'my_image']
 
+
+# Commentform
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ['comments']
 
 # profile
 class ProfileForm(forms.ModelForm):
@@ -28,3 +35,9 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ['bio',
                   'profile_pic']
+
+
+
+class MessageForm(forms.Form):
+    subject = forms.CharField(max_length=100)
+    To = forms.CharField(max_length=100)

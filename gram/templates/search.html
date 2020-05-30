@@ -20,7 +20,7 @@
 <div class="row profile-settings">
   <div class="col-xs-12">
     <div class="profile-pic-name">
-        <img class="picture-circle--medium" src="{{ usr.profile_path.url }}">
+        <img class="picture-circle--medium" src="{{ usr.my_image.url }}">
 
         <span class="username">Username:<a href="/instagram/prof/{{usr.user.username}}"> {{usr.}}{{ usr.user.username }}</a> </span>
       <span class="username">Bio: {{ usr.bio }}</span>
@@ -28,3 +28,4 @@
   </div>
 </div>
 {% endfor %}
+{% endblock %}

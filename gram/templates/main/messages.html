@@ -1,24 +1,36 @@
-{%extends 'base.html'%}
+{% extends "base.html" %}
+
 {% block content %}
-
-<div class="container">
+<br>
+<div class="container text-center">
+<div class="row">
 <div class="col-md-5">
-    <div class="jumbotron">
-        <h2 class="display-5 text-center font-weight-bold text-white">Direct
+<div class="jumbotron">
+        <h2 class="display-5 text-center font-weight-bold text-white">Direct<hr>
         </h2>
-            <p >{{ image_item.author }}</p>
-            <p >{{ image_item.title }}</p>
-            <p><b>Time created:</b> {{ image_item.time_created }}</p>
+        </div>
+     {% for post in images %}
+        <div>
+            <img style="vertical-align:middle" src="{{ post.my_image.url }}">
+            <span style="">  {{post.profile.user.username}} {{post.user}}</span>
+                <p>{{post.message}} </p>
+                <p>{{post.time_created}}<p>
+        </div>
+
+    {% endfor %}
 
     </div>
-    </div>
-     <div class="col-md-7">
+     <div class="col-md-7 " >
       <h1><i class="fa fa-paper-plane"></i></h1>
         <h2>Your messages</h2>
         <p>Send private photos and messages to a friend or group.</p>
-        <button class='btn btn-info' type="submit">Send message</button>
+          <form action="/your-name/" method="post">
+              {% csrf_token %}
+              {{ messageform| linebreaks}}
+              <button class='btn btn-info' type="submit">Send message</button>
+          </form>
       </div>
   </div>
-<hr>
+  </div>
 
-{% endblock %}
+{% endblock content %}

@@ -9,6 +9,7 @@ from datetime import datetime
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to='profile/',null=True, default ='profile/image.jpg')
     bio = models.CharField(max_length=60,blank=True)
+    uname = models.CharField(max_length=80, default='Yensantos')
     user = models.OneToOneField(User,on_delete=models.CASCADE)
 
     def __str__(self):
@@ -94,3 +95,8 @@ class Image(models.Model):
         image = Image.objects.filter(id=Image.id)
         return image
 
+      # search by name
+    @classmethod
+    def search_by_name(cls,search_term):
+        search_result = cls.objects.filter(profile__uname__icontains=search_term)
+        return search_result

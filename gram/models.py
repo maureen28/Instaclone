@@ -29,12 +29,35 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()
 
+class Comment(models.Model):
+    comments = models.CharField(max_length=60,null=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.comments
+
+    #Save comments
+    def save_comment(self):
+        return self.save()
+
+    #Delete comments
+    def delete_comment(self):
+        self.delete()
+
+    #Get comments
+    @classmethod
+    def get_comment(cls):
+        comment = Comment.objects.all()
+        return comment
+
 class Image(models.Model):
     name = models.CharField(max_length = 150, default='Armies')
     caption = models.CharField(max_length = 60)
     time_created= models.DateTimeField(default=datetime.now, blank=True)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     likes = models.PositiveIntegerField(default=0)
+    title = models.ForeignKey(Comment)
+    message = models.TextField()
     my_image = models.ImageField(upload_to='gallery/',default ='gallery/image.jpg')
 
     def __str__(self):
@@ -72,24 +95,3 @@ class Image(models.Model):
         image = Image.objects.filter(id=Image.id)
         return image
 
-class Comment(models.Model):
-    comments = models.CharField(max_length=60,null=True)
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    image = models.ForeignKey(Image,on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.comments
-
-    #Save comments
-    def save_comment(self):
-        return self.save()
-
-    #Delete comments
-    def delete_comment(self):
-        self.delete()
-
-    #Get comments
-    @classmethod
-    def get_comment(cls):
-        comment = Comment.objects.all()
-        return comment

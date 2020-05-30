@@ -7,17 +7,15 @@
 <div class="container">
     <div class="row">
     {% for post in images %}
-        <div class=" col-md-4"><br>
-            <div id ='main'>
-                 <h4 class="card-header"> {{post.profile.user.username}} {{post.user}}</h4>
-                  <img class="img-fluid" src="{{ post.my_image.url }}" alt="image">
-             <div class="overlay">
-            <div class="text">
-              <p class="card-text">Posted at :{{post.time_created}}</p>
-               <p class="card-text text-muted"><i class="fa fa-heart"></i>{{post.likes}}</p>
-             </div>
-             </div>
-            </div>
+        <div class="col-md-4"><br>
+            <h3 class="card-header"> {{post.profile.user.username}} {{post.user}}</h3>
+            <img class="img-fluid" src="{{ post.my_image.url }}" alt="image">
+            <h4>{{post.caption}}</h4>
+            <p><b>Posted at</b> :{{post.time_created}}</p>
+            <span ><i class="fa fa-heart"></i>{{post.likes}}
+            <i class="fa fa-comment">{{post.comment}}</i>
+            <i class="fa fa-paper-plane">{{post.message}}</i>
+            </span>
         </div>
     {% endfor %}
     </div>

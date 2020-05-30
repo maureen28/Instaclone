@@ -3,6 +3,7 @@ from django.http  import HttpResponse, Http404
 from .models import Profile, Image, Comment
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, ImageForm, CommentForm, ProfileForm
+
 # Create your views here.
 
 
@@ -17,18 +18,19 @@ def post(request):
     return render(request, 'index.html', { 'posts': posts})
 
 
+# Search function
+@login_required(login_url='/accounts/login/')
+def search_results(request):
+    if 'searchItem' in request.GET and request.GET["searchItem"]:
+        search_term = request.GET.get("searchItem")
+        searched_user = Profile.search_by_username(search_term)
+        message = f"{search_term}"
+        context = {
+            'message': message,
+            'searched_user': searched_user
+        }
+        return render(request, 'search.html', context)
 
-
-def image_form(request):
-    if request.method == 'POST': 
-        form = PostPictureForm(request.POST, request.FILES) 
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.profile = request.user.profile
-            form.save()
-            return redirect('welcome') 
-    else: 
-        form = PostPictureForm() 
-    return render(request, 'image_form.html', {'form' : form}) 
-
-
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'index.html',{"message":message})

@@ -9,6 +9,21 @@
 <div class="container">
   <!-- Looping through images   -->
  <div class="row">
+ {% for image in images %}
+     <!--Display images  -->
+     <div class=" col-md-4"><br>
+     <div id ='main'>
+       <img src="{{ image.my_image.url }}" class=" image " alt="Image" >
+        <div class="overlay">
+            <div class="text">
+                <h3 class="text-center"> {{ image.title }} </h3>
+                <h5>Created on: {{ image.time_created }} </h5>
+                <span><b>Comments</b> :{{ image.comments }}
+                <b>Likes</b> :{{ image.likes }}
+                 </span>
+  </div>
+        </div>
+    </div>
 
 </div><br>
 

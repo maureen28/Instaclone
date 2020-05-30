@@ -88,3 +88,7 @@ class Image(models.Model):
         image_result = cls.objects.get(id=incoming_id)
         return image_result
 
+    @classmethod
+    def update_caption(cls,id,caption):
+        captioned = Image.objects.filter(id=id).update(caption = caption)
+        return captioned

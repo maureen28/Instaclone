@@ -52,3 +52,17 @@ source virtual/bin/activate
 <li> Use the navigation bar/navbar/navigation pane/menu to navigate and explore the app.</li>
 </ol>
 
+
+## Running the tests
+Use the command given below to run automated tests.
+<code> python manage.py test insta </code>
+
+
+## Contact Information
+
+To get in touch E-MAIL me on nimz69509@gmail.com
+
+## License
+
+MIT License
+<b>Copyright (c) 2020 maureen28<b>

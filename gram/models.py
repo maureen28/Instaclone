@@ -6,14 +6,13 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Profile(models.Model):
-    profilePic = models.ImageField(upload_to='profile/',null=True)
+    profile_pic = models.ImageField(upload_to='profile/',null=True)
     bio = models.CharField(max_length=60,blank=True)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    
+
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
@@ -22,60 +21,50 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
-    
+
     def create_profile(self):
         self.save()
 
     def delete_profile(self):
         self.delete()
-    # def save_profile(self):
-    #     self.save()
-
-    # def delete_profile(self):
-    #     self.delete()
-        
-    # @classmethod
-    # def get_profile(cls):
-    #     profile = Profile.objects.all()
-    #     return profile
-
-    # @classmethod
-    # def find_profile(cls,search_term):
-    #     profile = cls.objects.filter(user__username__icontains=search_term)
-    #     return profile
-
-    # @classmethod
-    # def update_profile(cls,id,bio):
-    #     updated = Image.objects.filter(id=id).update(bio = bio)
-    #     return updated
 
 class Image(models.Model):
-    image = models.ImageField()
+    name = models.CharField(max_length = 150)
     caption = models.CharField(max_length = 60)
-    upload_date = models.DateTimeField(default=timezone.now)
+    time_created= models.DateTimeField(default=timezone.now)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     likes = models.PositiveIntegerField(default=0)
-    
+    my_image = models.ImageField(upload_to='gallery/')
+
     def __str__(self):
         return self.caption
-    class Meta:
-        ordering = ['-upload_date']
 
+    #  Save image
     def save_image(self):
         self.save()
 
+    # Delete image
     def delete_image(self):
         self.delete()
 
+    #  Update image
+    @classmethod
+    def update_image(cls,current_value,new_value):
+        filtered_image = Image.objects.filter(image_name=current_value).update(image_name=new_value)
+        return filtered_image
+
+    #update caption
     @classmethod
     def update_caption(cls,id,caption):
         captioned = Image.objects.filter(id=id).update(caption = caption)
         return captioned
 
+    #  retrieve all
     @classmethod
-    def get_all(cls):
-        imgs = Image.objects.all()
-        return imgs
+    def retrieve_all(cls):
+        all_items = Image.objects.all()
+        for item in all_items:
+            return item;
 
     @classmethod
     def get_image_by_id(cls,id):
@@ -84,27 +73,22 @@ class Image(models.Model):
 
 class Comment(models.Model):
     comments = models.CharField(max_length=60,null=True)
-    comment_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     image = models.ForeignKey(Image,on_delete=models.CASCADE)
-    
+
     def __str__(self):
         return self.comments
-    class Meta:
-        ordering = ['-comment_date']
+
+    #Save comments
     def save_comment(self):
         return self.save()
+
+    #Delete comments
     def delete_comment(self):
         self.delete()
-        
+
+    #Get comments
     @classmethod
     def get_comment(cls):
         comment = Comment.objects.all()
         return comment
-    
-class Post(models.Model):
-    user=models.ForeignKey(User, on_delete=models.CASCADE,null=True)
-    post = models.ImageField()
-    caption = models.CharField(max_length=200)
-    def __str__(self):
-        return self.post()

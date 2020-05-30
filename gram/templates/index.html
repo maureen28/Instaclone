@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+{%load bootstrap4 %}
+{% load static %}
+{{ block.super}}
+{% block content  %}
+
+{% for post in posts %}
+<div class="container">
+  <div class="card carding" style="width: 50rem;">
+    <h5 class="card-header"> {{post.profile.user.username}} {{post.user}}</h5>
+    
+  <img class="img-fluid" src="{{ post.image.url }}" alt="">
+  <div class="card-body">
+    <div class="icons">
+      <div><i class="far fa-heart fa-2x"></i></div>
+    </div>
+    <p class="card-text">{{post.upload_date}}</p>
+    <p class="card-text text-muted">{{post.likes}}</p>
+  </div>
+</div>
+</div>
+   {% endfor %}
+{% endblock %}

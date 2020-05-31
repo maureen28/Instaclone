@@ -7,7 +7,7 @@ from datetime import datetime
 
 # Create your models here.
 class Profile(models.Model):
-    profile_pic = models.ImageField(upload_to='profile/',null=True, default ='profile/image.jpg')
+    profile_pic = models.ImageField(upload_to='profile_pics/' ,default ='profile/image.jpg')
     bio = models.CharField(max_length=60,blank=True)
     uname = models.CharField(max_length=80, default='Yensantos')
     user = models.OneToOneField(User,on_delete=models.CASCADE)

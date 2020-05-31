@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http  import HttpResponse, Http404
 from .models import Profile, Image, Comment
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, ImageForm, ProfileForm, CommentForm, MessageForm
 
@@ -48,15 +49,15 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'index.html',{"message":message})
+
 # profile form
 def image_form(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.profile = request.user.profile
             form.save()
             return redirect('welcome')
     else:
         form = ProfileForm()
     return render(request, 'main/image_form.html', {'form' : form})
+

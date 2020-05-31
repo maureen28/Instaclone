@@ -5,7 +5,7 @@
     <div class="content-section container card">
     <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form}}
+    {{ form| linebreaks}}
     <button type="submit">Upload</button>
     </form>
 </br>

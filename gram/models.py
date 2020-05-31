@@ -9,7 +9,7 @@ from datetime import datetime
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to='profile_pics/')
     bio = models.CharField(max_length=60,blank=True)
-    uname = models.CharField(max_length=80, default='Yensantos')
+    uname = models.CharField(max_length=80, default='Nimo')
     user = models.OneToOneField(User,on_delete=models.CASCADE)
 
     def __str__(self):

@@ -51,7 +51,7 @@ def image_form(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.profile = request.user.profile
-            form.save()
+            # form.save()
             return redirect('welcome')
     else:
         form = ProfileForm()

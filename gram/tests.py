@@ -9,7 +9,7 @@ class InstagramTestClass(TestCase):
     def setUpTestData(cls):
         # Set up data for the whole TestCase
         cls.user = User(id=1,username='Nimo',email='nimo@gmail.com',password='nimo5!34')
-        cls.profile1 = Profile(bio='Live life',profile_pic='profile/image.jpg', uname='Nimo',user =cls.user)
+        cls.profile1 = Profile(bio='Live life',profile_pic='profile/image.jpg', uname='Nimo')
         cls.comment1 =Comment(comments ='Looking good', user =cls.user)
         cls.image1 = Image(id=1,caption='Jedi',name='Armies', my_image='gallery/image.jpg',profile=cls.profile1)
 

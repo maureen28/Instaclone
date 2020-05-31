@@ -3,16 +3,17 @@
 {{ block.super}}
 {% block content  %}
 
-<div class="container">
+<div class="container"><br>
     <div class="row">
     {% for post in images %}
         <div class="col-md-4"><br>
             <h2 class="card-header"> {{post.profile.user.username}} {{post.user}}</h2>
-            <img class="img-fluid" src="{{ post.my_image.cdn_url }}" alt="image">
-            <p>New to Instagram</p>
+            <img class="img-fluid" src="{{ post.profile_pic.cdn_url }}" alt="image">
+            <div class='text-center'>
+            <p >New to Instagram</p>
             <button class='btn btn-info' id="btn1">Follow</button>
-         <h4>{{post.caption}}</h4>
-     </div>
+            </div>
+        </div>
     {% endfor %}
     </div>
 </div>

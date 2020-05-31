@@ -1,31 +1,32 @@
- {% extends 'base.html' %}
-
-{% load static %}
-
+{%extends 'base.html'%}
 {% block content %}
-<style>
-  .picture-circle, .picture-circle--medium, .picture-circle--small {
-    border-radius: 100%;
-    width: 150px;
-    height: 150px; }
-    .picture-circle--medium {
-      width: 136px;
-      height: 136px;
-      }
-  .username{
-        display: flex;
-      }
-   </style>
-{% for usr in searched_user %}
-<div class="row profile-settings">
-  <div class="col-xs-12">
-    <div class="profile-pic-name">
-        <img class="picture-circle--medium" src="{{ usr.my_image.url }}">
+<div class="container">
 
-        <span class="username">Username:<a href="/instagram/prof/{{usr.user.username}}"> {{usr.}}{{ usr.user.username }}</a> </span>
-      <span class="username">Bio: {{ usr.bio }}</span>
-    </div>
+  <div class="row">
+    {% if categorys%}
+      <h2 class ='text-center'>Found {{ categorys|length }} of searched term {{message}}</h2>
+    {% else %}
+      <h2> Found 0 items for the search term {{message}}</h2>
+    {% endif %}
+
   </div>
+
+<div class="row">
+
+  {% if categorys %}
+  <div class="grid">
+    {% for image_item in categorys %}
+        <div class="grid-item"><br><hr>
+         <h3> {{post.profile.user.username}} {{post.user}}</h3>
+          <img class="image" src="{{image_item.my_image.url}}" />
+                <p >{{ image_item.name }}</p>
+
+        </div>
+  </div>
+     {% endfor %}
+
+  {% endif %}
 </div>
-{% endfor %}
+
+    </div>
 {% endblock %}

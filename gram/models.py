@@ -7,7 +7,7 @@ from datetime import datetime
 
 # Create your models here.
 class Profile(models.Model):
-    profile_pic = models.ImageField(upload_to='profile_pics/' ,default ='profile/image.jpg')
+    profile_pic = models.ImageField(upload_to='profile_pics/')
     bio = models.CharField(max_length=60,blank=True)
     uname = models.CharField(max_length=80, default='Yensantos')
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -58,7 +58,7 @@ class Image(models.Model):
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     likes = models.PositiveIntegerField(default=0)
     message = models.TextField(default='Hey there.')
-    my_image = models.ImageField(upload_to='gallery/',default ='gallery/image.jpg')
+    my_image = models.ImageField(upload_to='gallery/')
 
     def __str__(self):
         return self.caption
@@ -95,8 +95,9 @@ class Image(models.Model):
         image = Image.objects.filter(id=Image.id)
         return image
 
-      # search by name
+     # search by profile
     @classmethod
-    def search_by_name(cls,search_term):
+    def search_by_profile(cls,search_term):
         search_result = cls.objects.filter(profile__uname__icontains=search_term)
         return search_result
+

@@ -24,10 +24,10 @@
                     </li>
                     </ul>
                     <h5><strong>{{image.profile.username}}</strong> {{image.caption}}</h5>
-
                     <br>
-                    <p></p>{{likes|length}} likes
-                    <p class=""> {{image.comment.count}} comments </p>
+                    <p class=""> {{image.comment.count}} Comments </p>
+                    <p>{{likes|length}} Likes </p>
+                      <i class="fa fa-comment"></i><a href="/messages/ {{image.message}}"> {{image.message}}</a>
 
                 <div class="card-body ">
                     {% for comment in comments %}
@@ -39,14 +39,15 @@
                     {% endfor %}
                 </div>
                 </div>
+      </div>
 
-
-                                </div>
-
-            {% empty %}
-            <h2>No images. Follow people to see their images</h2>
+            {% empty %}<br>
+        <div class="jumbotron text-center">
+            <h2 >Hey there! So excited to have you here :)
+            <br>You can create your first new post as well as follow your friends.
+            <br>Lets get you started. </h2><hr>
             <p><a href= "{% url 'upload_image' %}">Add Image</a></p>
-
+        </div>
             {% endfor %}
         </div>
     </div>

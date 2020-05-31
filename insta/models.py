@@ -10,7 +10,7 @@ from friendship.models import Friend,Follow,Block
 class Profile(models.Model):
     profile_pic = models.ImageField(blank=True)
     bio = models.CharField(max_length=100,blank=True)
-    user = models.OneToOneField(User,blank=True, on_delete=models.CASCADE, related_name="profile")
+    user = models.ForeignKey(User,blank=True, on_delete=models.CASCADE, related_name="profile")
 
     def __str__(self):
         return self.bio
@@ -39,7 +39,7 @@ class Profile(models.Model):
 class Image(models.Model):
     time_created= models.DateTimeField(default=datetime.now, blank=True)
     my_image=ImageField(manual_crop='1080x800', blank=True)
-    message = models.CharField(max_length=80, default='Hey')
+    message = models.CharField(max_length=80, default='Hey', blank=True)
     name = models.CharField(max_length=80)
     caption = models.TextField(blank=True)
     profile = models.ForeignKey(User, blank=True,on_delete=models.CASCADE)

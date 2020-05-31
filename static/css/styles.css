@@ -1,5 +1,5 @@
 body {
-    background-color: #fafafa;
+    /* background-color: '#8a3ab9'; */
     font-family: 'Catamaran';
 }
 
@@ -130,6 +130,7 @@ a:hover {
 
 .fa {
     color: black;
+    font-size: 30px;
 }
 
 .edit-profile {

@@ -15,11 +15,10 @@ def home(request):
     comments = Comment.objects.all()
     likes = Likes.objects.all
     profile = Profile.objects.all()
-    print(likes)
     return render(request,'index.html',locals())
 
 # Explore
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/login')
 def explore(request):
     images = Image.objects.all()
     all_profiles = Profile.objects.all()
@@ -32,7 +31,16 @@ def messages(request):
     messageform = MessageForm()
     return render(request, 'main/messages.html',{'images': images, 'messageform':messageform})
 
+# Search
+def search(request):
+    profiles = User.objects.all()
+    if 'username' in request.GET and request.GET['username']:
+        search_term = request.GET.get('username')
+        results = User.objects.filter(username__icontains=search_term)
+        return render(request,'search.html',locals())
+    return redirect(home)
 
+# Add image
 @login_required(login_url='accounts/login/')
 def add_image(request):
     current_user = request.user
@@ -45,11 +53,9 @@ def add_image(request):
             return redirect('home')
     else:
         form = ImageForm()
-
-
     return render(request,'image.html',locals())
 
-
+# profile
 @login_required(login_url='/login')
 def profile(request):
     current_user = request.user
@@ -57,14 +63,14 @@ def profile(request):
         form = ProfileForm(request.POST,request.FILES)
         if form.is_valid():
             profile =form.save(commit=False)
-            profile.owner = current_user
+            profile.user = current_user
             profile.save()
     else:
         form=ProfileForm()
 
     return render(request, 'profile/new_user.html', locals())
 
-
+# all profiles displayed
 @login_required(login_url='/accounts/login/')
 def display_profile(request, id):
     seekuser=User.objects.filter(id=id).first()
@@ -72,44 +78,27 @@ def display_profile(request, id):
     profile_details = Profile.get_by_id(id)
     images = Image.get_profile_images(id)
 
-    usersss = User.objects.get(id=id)
-    follower = len(Follow.objects.followers(usersss))
-    following = len(Follow.objects.following(usersss))
+    users = User.objects.get(id=id)
+    follower = len(Follow.objects.followers(users))
+    following = len(Follow.objects.following(users))
     people=User.objects.all()
     pip_following=Follow.objects.following(request.user)
 
     return render(request,'profile/profile.html',locals())
 
-def search(request):
-    profiles = User.objects.all()
-
-    if 'username' in request.GET and request.GET['username']:
-        search_term = request.GET.get('username')
-        results = User.objects.filter(username__icontains=search_term)
-        print(results)
-
-        return render(request,'search.html',locals())
-
-    return redirect(home)
-
-
+# Comment
 def comment(request,image_id):
     current_user=request.user
     image = Image.objects.get(id=image_id)
     profile_owner = User.objects.get(username=current_user)
     comments = Comment.objects.all()
-    print(comments)
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.image = image
-            comment.comment_owner = current_user
+            comment.comment_title = current_user
             comment.save()
-
-            print(comments)
-
-
         return redirect(home)
 
     else:

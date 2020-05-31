@@ -8,7 +8,7 @@ from friendship.models import Friend,Follow,Block
 # Create your models here.
 
 class Profile(models.Model):
-    profile_pic = models.ImageField(blank=True)
+    profile_pic = models.ImageField()
     bio = models.CharField(max_length=100,blank=True)
     user = models.ForeignKey(User,blank=True, on_delete=models.CASCADE, related_name="profile")
 
@@ -26,7 +26,7 @@ class Profile(models.Model):
      #Get profile
     @classmethod
     def get_by_id(cls, id):
-        profile = Profile.objects.get(user=id)
+        profile = Profile.objects.filter(user=id)
         return profile
 
     @classmethod

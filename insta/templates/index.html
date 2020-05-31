@@ -7,7 +7,7 @@
             {% for image in all_images %}
             <div class="card">
                 <a href="{% url 'showprofile' id=image.profile.id %}">
-                    <img src="{{image.profile_details.profile_pic.cdn_url}}" class="rounded-circle" style="width:10%; height:auto" alt=""/>
+                    <img src="{{image.profile_pic.cdn_url}}" class="rounded-circle" style="width:10%; height:auto" alt=""/>
                         {{image.profile.username}}</a>
                 <hr>
                 <div class="card-img-top">
@@ -43,7 +43,7 @@
             <h2 >Hey there! So excited to have you here :)
             <br>You can create your first new post as well as follow your friends.
             <br>Lets get you started. </h2><hr>
-            <p><a href= "{% url 'upload_image' %}">Add Image</a></p>
+            <p><a href= "{% url 'upload_image' %}"> Add Image</a></p>
         </div>
             {% endfor %}
         </div>

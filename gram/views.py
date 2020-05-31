@@ -1,19 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse, Http404
-from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
 from .models import Profile, Image, Comment
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, ImageForm, ProfileForm, CommentForm, MessageForm
 
 # Create your views here.
-@login_required(login_url='/accounts/login/')
 def welcome(request):
     images = Image.objects.all()
     all_comments = Comment.objects.all()
     all_profiles = Profile.objects.all()
     return render(request, 'index.html',{'images': images, 'all_comments': all_comments, 'all_profiles' : all_profiles})
-
 
 # Explore
 @login_required(login_url='/accounts/login/')
@@ -49,26 +45,14 @@ def search_results(request):
         return render(request, 'search.html',{ 'message': message})
 
 # profile form
-def my_view(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        return render(request, 'registration/login.html')
-    else:
-        if not request.user.is_authenticated:
-            return render(request, 'registration/regisration_form.html')
-
-
-def logout_view(request):
-    logout(request)
-
-def password_change(request):
+def image_form(request):
     if request.method == 'POST':
-        form = PasswordChangeForm(user=request.user, data=request.POST)
+        form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
+            post = form.save(commit=False)
+            post.profile = request.user.profile
             form.save()
-            update_session_auth_hash(request, form.user)
+            return redirect('welcome')
     else:
-        return render(request, 'registration/login.html')
+        form = ProfileForm()
+    return render(request, 'main/image_form.html', {'form' : form})

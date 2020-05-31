@@ -35,9 +35,9 @@
         <a class="navbar-brand" href="{% url 'messages' %}"><i class="fa fa-paper-plane"></i></a>
         <a class="navbar-brand" href="{% url 'explore' %}"><i class="fa fa-compass"></i></a>
         <a class="navbar-brand" href="{% url 'comments' %}"><i class="fa fa-heart"></i></a>
-         {% comment %} <a class="navbar-brand" href="{% url 'image_form' %}"><i class="fa fa-user"></i></a> {% endcomment %}
+          <a class="navbar-brand" href="{% url 'image_form' %}"><i class="fa fa-user"></i></a>
          <!--The search form above-->
-    <div class="col-sm-6 col-md-6">
+        <div class="col-sm-6 col-md-6">
             {% if user.is_authenticated %}
             <ul>
               <li class="dropdown">
@@ -49,19 +49,18 @@
                     <a href="{%url 'welcome'%}">Home</a>
                   </li>
                   <li>
-                    <a href="{%url 'password'%}"">Change Password</a>
+                    <a href="/accounts/password/change">Change Password</a>
                   </li>
                   <li>
-                    <a href="{%url 'logout'%}">Logout</a>
+                    <a href="/logout">Logout</a>
                   </li>
                 </ul>
               </li>
             </ul>
             {% else %}
             <li>
-              <a class='btn btn-default' href="{%url 'login'%}">Login</a>
+              <a class='btn btn-info' href="/accounts/login">Login</a>
             </li>
-
             {% endif %}
           </div>
           </div>

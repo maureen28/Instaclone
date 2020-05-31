@@ -34,8 +34,6 @@ class ProfileForm(forms.ModelForm):
         fields = ['bio',
                   'profile_pic']
 
-
-
 class MessageForm(forms.Form):
     subject = forms.CharField(max_length=100)
     To = forms.CharField(max_length=100)

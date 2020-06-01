@@ -36,7 +36,7 @@ This is a clone of the website for Instagram. You can post, comment and view pic
 
 </ul>
 
-### Live link :
+### Live link : https://igcloneapp.herokuapp.com/
 
 
 ## BDD

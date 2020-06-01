@@ -29,7 +29,8 @@ This is a clone of the website for Instagram. You can post, comment and view pic
 <ul>
 <li>Below is the landing page once the web browser is loaded</li>
 <img src="/landing.jpg" alt=" Home page" width="1000"/>
-<li>Below is an expanded image Once you hover over the image</li>
+<li>Below is the explore page </li>
+<img src="/explore .jpg" alt=" Explore page" width="800"/>
 <li>Below is the login page once you logout or want to sign in</li>
 <img src="/login.jpg" alt="Login page" width="800"/>
 

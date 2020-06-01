@@ -27,8 +27,9 @@ This is a clone of the website for Instagram. You can post, comment and view pic
 ### Brief Webpage Overview.
 
 <ul>
-<li>Below is the registration page once you open the app</li>
-<img src="/Signup.jpg" alt="Signup page" width="1000"/>
+<li>Below is the landing page once the web browser is loaded</li>
+<img src="/landing.jpg" alt=" Home page" width="1000"/>
+<li>Below is an expanded image Once you hover over the image</li>
 <li>Below is the login page once you logout or want to sign in</li>
 <img src="/login.jpg" alt="Login page" width="800"/>
 

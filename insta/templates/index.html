@@ -8,10 +8,11 @@
             <div class="card">
                 <a href="{% url 'showprofile' id=image.profile.id %}">
                  {% if image.profile_pic %}
-                <img src="{{image.profile_pic.cdn_url}}" class="rounded-circle" style="width:10%; height:auto" alt=""/>
+                <img src="{{image.profile_pic.cdn_url}}" class="rounded-circle" style=" width:80px;height:80px;" alt="Profile dp"/>
                         {{image.profile.username}}</a>
                 {% else %}
-                <img src="https://unsplash.it/1200/768.jpg?image=1008" alt="avatar">
+                <img src="https://unsplash.it/1200/768.jpg?image=1008"  class="rounded-circle" style=" width:80px;height:80px;" alt="avatar">
+                 {{image.profile.username}}</a>
                 {% endif %}
                 <hr>
                 <div class="card-img-top">

@@ -115,6 +115,10 @@ a:hover {
     height: 33.3%;
     overflow: hidden;
 }
+.footer{
+    background-color: black;
+    color: white;
+}
 
 .username {
     font-family: 'Raleway';
@@ -180,12 +184,4 @@ a:hover {
     height: 180px;
     border-radius: 20rem;
     margin: 2rem 0;
-}
-
-
-
-
-.footer{
-    background-color: black;
-    color: white;
 }

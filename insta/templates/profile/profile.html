@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
-
+<br>
 {{form.media}}
     <div class="container">
         <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
@@ -13,4 +13,18 @@
             <input type="submit" class="btn btn-outline-info " value="Edit Profile">
         </form>
     </div>
+  <hr>
+  <h1 class='text-center'>PROFILE</h1>
+    <div class="row">
+        <div class="col-md-4">
+            {% if all_images %}
+                <img src="{{image.my_image.cdn_url}}" class="card-img-top" alt="Image"></div>
+                {% else %}
+            <h2 class='text-center' >You have no post yet</h2>
+            <p class='text-center' ><a href= "{% url 'upload_image' %}"> Create your first post</a></p>
+        </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}
